@@ -4,6 +4,7 @@ import 'dart:convert';
 
 import 'package:crypto/crypto.dart';
 import 'package:hive/hive.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import 'package:finalproject1/model/model_login.dart';
@@ -19,6 +20,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
 
   late Box<loginData> _datalogin;
+  late SharedPreferences prefs;
 
   TextEditingController usernameController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
@@ -31,7 +33,17 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   void awokwok() async {
+    prefs = await SharedPreferences.getInstance();
     _datalogin = await Hive.openBox('LoginModel');
+
+    bool? isLogin = (prefs.getString("username")!=null) ? true:false;
+
+    if(isLogin && mounted){
+      Navigator.of(context).pushAndRemoveUntil(MaterialPageRoute(
+          builder: (context) => HomePage()
+      ),
+              (route) => false);
+    }
   }
 
   void _showSnackbar(String message){
@@ -48,9 +60,12 @@ class _LoginPageState extends State<LoginPage> {
     if(!found){
       _showSnackbar('Username or Password false');
     }else{
-      Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => const HomePage())
-        , (route) => false);
+      await prefs.setString('username', username); //pindahin ke main page
+      if(mounted){
+        Navigator.of(context).pushAndRemoveUntil(
+            MaterialPageRoute(builder: (context)=>HomePage())
+            , (route) => false);
+      }
       _showSnackbar("Login Succes");
     }
   }
@@ -72,6 +87,19 @@ class _LoginPageState extends State<LoginPage> {
       }
     }
 
+    return found;
+  }
+
+  bool checkUsers(String username) {
+    bool found = false;
+    for (int i = 0; i < getLength(); i++) {
+      if (username == _datalogin.getAt(i)!.username) {
+        found = true;
+        break;
+      } else {
+        found = false;
+      }
+    }
     return found;
   }
 

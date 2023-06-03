@@ -5,7 +5,8 @@ import 'package:finalproject1/model/model_weapondet.dart';
 
 class WeapDetailsPage extends StatefulWidget {
   final uuid;
-  const WeapDetailsPage({ Key? key, required this.uuid}) : super(key: key);
+  final String name;
+  const WeapDetailsPage({ Key? key, required this.uuid, required this.name }) : super(key: key);
 
   @override
   State<WeapDetailsPage> createState() => _WeaponDetailsState();
@@ -16,7 +17,7 @@ class _WeaponDetailsState extends State<WeapDetailsPage> {
   Widget build(BuildContext context) {
     return SafeArea(child: Scaffold(
       appBar: AppBar(
-
+        title: Text(widget.name + " Details")
       ),
       body: _buildListWeaponBody(widget.uuid),
     ));
@@ -43,6 +44,7 @@ Widget _buildListWeaponBody(String uuid){
 
 Widget _buildSuccessSection(WeaponDetails weapon, String uuid){
   // int index = weapon.getIndexByName(uuid);
+  List<String> demeg = ['Head', 'Body', 'Leg'];
   return Center(
     child: Column(
       children: [
@@ -54,14 +56,20 @@ Widget _buildSuccessSection(WeaponDetails weapon, String uuid){
           width: 400,
           padding: EdgeInsets.all(20),
           decoration: BoxDecoration(
-            color: Colors.white,
+            color: Colors.grey,
             borderRadius: BorderRadius.circular(20),
           ),
           child: Column(
             children: [
-              Text(weapon.data!.displayName!)
+              Text(weapon.data!.displayName!, style: TextStyle(color: Colors.white ),),
+              Column(
+                children: [
+                  Text("Fire Rate : " + weapon.data!.weaponStats!.fireRate.toString(), style: TextStyle(color: Colors.white ),),
+                  Text("Magazine Size : " + weapon.data!.weaponStats!.magazineSize.toString(), style: TextStyle(color: Colors.white ),)
+                ],
+              )
             ],
-          )
+          ),
         ),
       ],
     ),

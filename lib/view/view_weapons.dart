@@ -72,13 +72,14 @@ Widget _buildWeaponItem(BuildContext context, Data data){
     margin: EdgeInsets.symmetric(horizontal: 10),
     height: 10,
     width: 10,
-    child: InkWell(
+    child: GestureDetector(
       onTap: () {
         Navigator.push(
             context,
             MaterialPageRoute(
               builder: (context) => WeapDetailsPage(
                 uuid: data.uuid,
+                name: data.displayName!
               ),
             ),
           );
@@ -89,7 +90,7 @@ Widget _buildWeaponItem(BuildContext context, Data data){
             Container(
               // width: 300,
               // height: 120,
-              child: Image.network(data.displayIcon!, width: 300, height: 100),
+              child: Image.network(data.displayIcon!, width: 250, height: 75),
             ),
             Text(data.displayName!),
           ],

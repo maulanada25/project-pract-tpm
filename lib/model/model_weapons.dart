@@ -75,10 +75,10 @@ class Data {
 class WeaponStats {
   final dynamic fireRate;
   final dynamic magazineSize;
-  final double? runSpeedMultiplier;
-  final double? equipTimeSeconds;
+  final dynamic runSpeedMultiplier;
+  final dynamic equipTimeSeconds;
   final dynamic reloadTimeSeconds;
-  final double? firstBulletAccuracy;
+  final dynamic firstBulletAccuracy;
   final dynamic shotgunPelletCount;
   final String? wallPenetration;
   final String? feature;
@@ -110,10 +110,10 @@ class WeaponStats {
   WeaponStats.fromJson(Map<String, dynamic> json)
     : fireRate = json['fireRate'] as dynamic,
       magazineSize = json['magazineSize'] as dynamic,
-      runSpeedMultiplier = json['runSpeedMultiplier'] as double?,
-      equipTimeSeconds = json['equipTimeSeconds'] as double?,
+      runSpeedMultiplier = json['runSpeedMultiplier'] as dynamic,
+      equipTimeSeconds = json['equipTimeSeconds'] as dynamic,
       reloadTimeSeconds = json['reloadTimeSeconds'] as dynamic,
-      firstBulletAccuracy = json['firstBulletAccuracy'] as double?,
+      firstBulletAccuracy = json['firstBulletAccuracy'] as dynamic,
       shotgunPelletCount = json['shotgunPelletCount'] as dynamic,
       wallPenetration = json['wallPenetration'] as String?,
       feature = json['feature'] as String?,
@@ -144,11 +144,11 @@ class WeaponStats {
 }
 
 class AdsStats {
-  final double? zoomMultiplier;
-  final double? fireRate;
-  final double? runSpeedMultiplier;
+  final dynamic zoomMultiplier;
+  final dynamic fireRate;
+  final dynamic runSpeedMultiplier;
   final dynamic burstCount;
-  final double? firstBulletAccuracy;
+  final dynamic firstBulletAccuracy;
 
   AdsStats({
     this.zoomMultiplier,
@@ -159,11 +159,11 @@ class AdsStats {
   });
 
   AdsStats.fromJson(Map<String, dynamic> json)
-    : zoomMultiplier = json['zoomMultiplier'] as double?,
-      fireRate = json['fireRate'] as double?,
-      runSpeedMultiplier = json['runSpeedMultiplier'] as double?,
+    : zoomMultiplier = json['zoomMultiplier'] as dynamic,
+      fireRate = json['fireRate'] as dynamic,
+      runSpeedMultiplier = json['runSpeedMultiplier'] as dynamic,
       burstCount = json['burstCount'] as dynamic,
-      firstBulletAccuracy = json['firstBulletAccuracy'] as double?;
+      firstBulletAccuracy = json['firstBulletAccuracy'] as dynamic;
 
   Map<String, dynamic> toJson() => {
     'zoomMultiplier' : zoomMultiplier,
@@ -179,7 +179,7 @@ class DamageRanges {
   final dynamic rangeEndMeters;
   final dynamic headDamage;
   final dynamic bodyDamage;
-  final double? legDamage;
+  final dynamic legDamage;
 
   DamageRanges({
     this.rangeStartMeters,
@@ -194,7 +194,7 @@ class DamageRanges {
       rangeEndMeters = json['rangeEndMeters'] as dynamic,
       headDamage = json['headDamage'] as dynamic,
       bodyDamage = json['bodyDamage'] as dynamic,
-      legDamage = json['legDamage'] as double?;
+      legDamage = json['legDamage'] as dynamic;
 
   Map<String, dynamic> toJson() => {
     'rangeStartMeters' : rangeStartMeters,

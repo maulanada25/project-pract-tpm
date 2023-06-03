@@ -51,7 +51,7 @@ class _ProfilePageState extends State<ProfilePage> {
                   onTap: () => showDialog(
                     context: context,
                     builder: (context) => AlertDialog(
-                        title: Text(memb.name),
+                        title: Text("Personal Info", textAlign: TextAlign.center),
                         content: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -73,7 +73,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   SizedBox(height:10),
                                   Text(memb.nim),
                                   SizedBox(height:10),
-                                  Text("Message"),
+                                  // Text("Message :"),
                                   Text(memb.message)
                                 ],
                               ),

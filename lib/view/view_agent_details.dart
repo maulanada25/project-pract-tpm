@@ -67,11 +67,13 @@ class _UserDetailState extends State<DetailPage> {
             ],
           ),
           // leading: Image.network(widget.potrait),
-        ),body: Column(
-          // mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            _buildDetailedUsersBody(widget.uuid),
-          ],
+        ),body: SingleChildScrollView(
+          child: Column(
+            // mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              _buildDetailedUsersBody(widget.uuid),
+            ],
+          ),
         ),
       ),
     ));
@@ -169,7 +171,8 @@ Widget _buildSuccessSection(BuildContext context, AgentDetails agent){
               ),
             ),
           ],
-        )
+        ),
+        SizedBox(height: 30,),
         // Row(
         //   mainAxisAlignment: MainAxisAlignment.spaceAround,
         //   children: [

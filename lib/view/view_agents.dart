@@ -106,21 +106,23 @@ class _AgentsViewState extends State<AgentsView> {
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
       child: SingleChildScrollView(
-        child: Column(
-          children: [
-            GridView.builder(
-              padding: EdgeInsets.symmetric(vertical: 20),
-              shrinkWrap: true,
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 3,
-                childAspectRatio: 1.0,
+        child: Container(
+          child: Column(
+            children: [
+              GridView.builder(
+                padding: EdgeInsets.symmetric(vertical: 20),
+                shrinkWrap: true,
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  childAspectRatio: 1.0,
+                ),
+                itemCount: playableAgents.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return _buildAgentItem(context, playableAgents[index]);
+                },
               ),
-              itemCount: playableAgents.length,
-              itemBuilder: (BuildContext context, int index) {
-                return _buildAgentItem(context, playableAgents[index]);
-              },
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -128,7 +130,7 @@ class _AgentsViewState extends State<AgentsView> {
 
   Widget _buildAgentItem(BuildContext context, Data data) {
     return Container(
-      child: InkWell(
+      child: GestureDetector(
         onTap: () {
           Navigator.push(
             context,
@@ -148,8 +150,8 @@ class _AgentsViewState extends State<AgentsView> {
           child: Column(
             children: [
               Container(
-                height: 120,
-                width: 120,
+                height: 100,
+                width: 100,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   image: DecorationImage(
